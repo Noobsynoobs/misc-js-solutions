@@ -1,0 +1,225 @@
+
+
+<script type="text/javascript">
+jQuery(function($){
+
+    $(document).ready(function(){
+
+	var mv_txt = $("#to_be_moved_1").text();
+	
+	var size = $(window).width();
+	var flag = 0;
+	var accordion_toggle = $('.accordion > li > .toggle');
+   flag_size = '';
+
+
+
+if(size < 768 ){
+flag_size = 1;
+$("#alt_loc").text(mv_txt);
+}
+
+
+
+else if (size > 768 ){
+flag_size = 0;
+}
+
+$(window).on('resize' , function(e){
+	var MobSize = window.matchMedia("screen and (max-width: 767px)");
+	var resize_width = $("body").prop("clientWidth");
+	var innerw = window.innerWidth;
+	
+	if(innerw >= 768 && flag == 1){
+	var styles = {display:"inline-block"};
+		$('.reveal').css(styles);
+		flag_size = 0;
+		$("#alt_loc").hide();
+		
+	
+	}
+	
+	else if (innerw <= 768 && flag == 1){
+	var styles = {display:"block"};
+	$('.reveal').css(styles);
+	flag_size = 1;
+	$("#alt_loc").text(mv_txt);
+	$("#alt_loc").show();
+	
+	}
+	
+	else if (innerw >= 768){
+	var styles = {display:"inline-block"};
+		$("#alt_loc").text();
+		flag_size = 0;
+	}
+	
+	else if (innerw <= 768){
+	var styles = {display:"block"};
+		$("#alt_loc").text(mv_txt);
+		flag_size = 1;
+	}
+
+  
+
+});
+
+  
+ accordion_toggle.bind('click', function (event) {
+    var $a = $(this);
+    
+    event.preventDefault();
+    
+    if ($a.hasClass('active') && flag_size == 0){
+                $a.removeClass('active').siblings('div').slideUp(1000);
+	        $a.html('mehr erfahren');
+			flag = 0;
+			
+                $('.toggle').attr('id', '');
+				var styles = {display:"inline-block"};
+				console.log(flag_size)
+				console.log(flag);
+    }
+	
+	else if ($a.hasClass('active') && flag_size == 1){
+		$a.removeClass('active').siblings('div').slideUp(1000);
+		$a.html('mehr erfahren');
+		flag = 0;
+		$('.toggle').attr('id', '');
+		var styles = {display:"block"};
+		console.log(flag_size);
+		console.log(flag);
+	}
+    else if (!$a.hasClass('active') && flag_size == 1) {
+                $a.addClass('active').siblings('div').slideDown(1000);
+		$a.html('weniger anzeigen ');
+		
+		var styles = {display: "block"};
+		$('.reveal').css(styles);
+                $('.toggle').attr('id' , 'changed');
+				flag = 1;
+				console.log(flag);
+    }
+	else if (!$a.hasClass('active') && flag_size == 0){
+		$a.addClass('active').siblings('div').slideDown(1000);
+		$a.html('weniger anzeigen');
+		var styles = {display:"inline-block"};
+		$('.reveal').css(styles);
+		$("#alt_loc").hide();
+		$('.toggle').attr('id', 'changed');
+		flag = 1;
+		console.log(flag);
+	}
+});
+
+
+
+
+  
+});
+
+});
+
+</script> 
+
+<style>
+.toggle:after {font-family: 'ShopSharkSymbols';display:inline-block;content: "F";font-size:40px; position:relative; top:11px;}
+#changed:after {font-family: 'ShopSharkSymbols';display:inline-block;content: "G";font-size:21px; position:relative; top:3px; font-weight:bold; }
+
+#topmost_wrapper .toggle {text-decoration: none ; font-size:15px; color: #a48b6c; width:23%; font-weight:bold; letter-spacing: 0.03em;}
+#topmost_wrapper {border: 1px solid #e0dfdf; margin-bottom:4%;}
+ .visible_text p  {display:inline-block;}
+ .visible_text ul {display:inline-block;}
+.accordion li div {display: none;}
+#to_be_moved_1{float:left;}
+.toggle {display:block;}
+.active {display:block;}
+.reveal p {font-size:14px; font-family:montserratlight;}
+.lpheadertext, .lpheaderpic{height:350px;}
+.lpheadertext {text-align:center; width:36.5%; max-width:37%; display:inline-block; vertical-align:top; background-color:white; float:right; }
+.lpheadertext h1 , h2 {width:100%;}
+.lpheadertext h1 {font-family:'Quickbrush'; margin-top:30%; color:#74d29e; font-size:45px;}
+.lpheadertext h2 {font-size:22px; margin-top:3%;}
+.lpheaderpic { background-position:center 80%; display: inline-block; width: 63.5%; max-width: 64%; float:right;}
+#outdoor {background-image: URL('http://placehold.it/400x400'); background-position:  center; background-repeat:no-repeat;}
+.visible_text ul {list-style:disc; width:27%; padding-left:12.5%; line-height:1.5em; vertical-align:top; font-family:montserratlight; font-size:14px;}
+.accordion li div:nth-child(3) {width:29%; padding-left:10%; line-height:1.5em; vertical-align:top; margin-top:4%;}
+.accordion li  div:nth-child(2) {width:55%; vertical-align:top;  font-size:18px; }
+.arrow-overlay { position:absolute; width:0px; height:0px; right:49%;}
+.down-arrow {border-top:20px solid rgb(251, 251, 251); border-right:20px solid transparent; border-left:20px solid transparent;}
+#topmost_wrapper .reveal_mob > img {width:65%;}
+.accordion {width:100%; padding:0 3% 3% 3%;}
+.visible_text {padding:32% 3% 0 3%; }
+#topmost_wrapper img {width:100%;}
+.visible_text p {width: 58%; font-size:14px; font-family:montserratlight; }
+.visible_text ul > p {width:100%; margin-left:-5%; margin-bottom:0.7%;  font-family:montserratregular; font-weight:bold;}
+
+
+@media only screen and (max-width:1199px){
+.accordion li div:nth-child(2) {font-size:15px;}
+.visible_text p {font-size:14px; width:56%; margin-bottom: 3%;}
+.visible_text ul {font-size:14px; padding-left:14.5%;}
+.visible_text {padding-top:40%;}
+.lpheadertext h1 {margin-top:38%; font-size:38px;}
+.lpheadertext h2 {font-size: 20px;}
+.visible_text ul > p {font-size:15px;}
+.accordion li div:nth-child(3) {padding-left: 9.3%;}
+#topmost_wrapper .toggle {font-size:15px;}
+#changed:after {font-size:19px;}
+.toggle:after {font-size: 39px;}
+}
+
+@media only screen and (max-width:959px){
+.accordion li  div:nth-child(2) {font-size:14px;}
+.visible_text p {font-size:13px;}
+.visible_text ul {font-size:13px;}
+.visible_text ul {width:32%; padding-left:12%; list-style:disc inside; text-indent: 1.4%;}
+.visible_text ul > p {margin-left: 0%; font-size:13px;}
+.reveal p {font-size:13px;}
+#topmost_wrapper .toggle {font-size:14px;}
+#changed:after {font-size: 17px;}
+.toggle:after {top:10px; font-size:34px;}
+.lpheadertext h1 {margin-top:48%; font-size: 32px;}
+.lpheadertext h2 {font-size:18px;}
+.visible_text {padding-top: 50%;}
+.accordion li div:nth-child(3) {padding-left: 9%;}
+}
+
+@media only screen and (min-width:767px){
+#topmost_wrapper .mob_only{display:none !important;}
+
+
+}
+
+
+
+@media only screen and (max-width:767px){
+<!--#topmost_wrapper .visible_text{display:none;}-->
+<!--#topmost_wrapper .accordion {display:none;}-->
+.lpheaderpic {background-image: URL('');display:none;}
+<!--.lpheadertext {max-width:100%;width:100%;background-image: URL('http://placehold.it/400x400');background-position:center 80%;margin-bottom:22%;}-->
+.lpheadertext h1 {display:none;}
+.lpheadertext h2 {display:none:}
+#topmost_wrapper {border:none;}
+#to_be_moved_1{display:none !important;}
+.lpheaderpic{display:block; width:100%; max-width:100%; float:right;}
+.lpheadertext {width:100%; max-width:100%; display:block; float:left;}
+.visible_text ul {width:100%; padding-left:1%; list-style:disc inside; text-indent: 1.4%;}
+.visible_text ul > p {text-align:left;}
+.visible_text p {font-size:14px; width:100%; text-align:center;}
+#topmost_wrapper .toggle {text-align:center; width:100%; margin-top:7%;}
+.lpheadertext {height:100px; background-color:rgb(251, 251, 251); margin-top:8%;}
+.lpheadertext h1 {margin-top:0%;}
+.accordion li div:nth-child(2) {width:100%; vertical-align:top;  font-size:18px;  }
+.accordion li div:nth-child(3){ padding-left:31%; width:40%;}
+#alt_loc {font-family: montserratlight; width:100%; font-size:13px; margin-bottom: 3%;}
+.accordion > li {padding: 5%; text-align:justify;}
+#outdoor {background-position: 30% center;}
+.accordion {padding: 0%;}
+}
+
+@media only screen and (max-width:310px){
+.lpheadertext h2{font-size:5vw;}
+.lpheadertext h1 {font-size: 9vw;}
+}
+</style>
