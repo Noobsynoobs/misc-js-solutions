@@ -72,7 +72,7 @@ $(window).on('resize' , function(e){
     
     if ($a.hasClass('active') && flag_size == 0){
                 $a.removeClass('active').siblings('div').slideUp(1000);
-	        $a.html('mehr erfahren');
+	        $a.html('show more');
 			flag = 0;
 			
                 $('.toggle').attr('id', '');
@@ -83,7 +83,7 @@ $(window).on('resize' , function(e){
 	
 	else if ($a.hasClass('active') && flag_size == 1){
 		$a.removeClass('active').siblings('div').slideUp(1000);
-		$a.html('mehr erfahren');
+		$a.html('show more');
 		flag = 0;
 		$('.toggle').attr('id', '');
 		var styles = {display:"block"};
@@ -92,7 +92,7 @@ $(window).on('resize' , function(e){
 	}
     else if (!$a.hasClass('active') && flag_size == 1) {
                 $a.addClass('active').siblings('div').slideDown(1000);
-		$a.html('weniger anzeigen ');
+		$a.html('show less ');
 		
 		var styles = {display: "block"};
 		$('.reveal').css(styles);
@@ -102,7 +102,7 @@ $(window).on('resize' , function(e){
     }
 	else if (!$a.hasClass('active') && flag_size == 0){
 		$a.addClass('active').siblings('div').slideDown(1000);
-		$a.html('weniger anzeigen');
+		$a.html('show less');
 		var styles = {display:"inline-block"};
 		$('.reveal').css(styles);
 		$("#alt_loc").hide();
